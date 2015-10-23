@@ -1,0 +1,99 @@
+@import url(http://fonts.googleapis.com/css?family=Pacifico|Open+Sans:300);
+
+body {
+  width: 600px;
+  margin: 0px auto;
+  text-align: center;
+  background-color: rgb(51,51,51);
+  color: white;
+  font-family: 'Open Sans', Arial;
+}
+
+h1 {
+  font-family: 'Pacifico';
+  font-size: 5em;
+}
+
+div {
+  margin: 0px auto;
+}
+
+#control-panel {
+  width: 400px;
+  margin: -30px auto 20px auto;
+}
+
+table td {
+  padding-left: 30px;
+  font-size: 0.9em
+}
+table td:first-child {
+  padding-left: 0px;
+  padding-right: 30px;
+  text-align: right;
+}
+
+table span {
+  padding: 22px;
+  font-size: 2.6em;
+}
+
+#pomodoro {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 3px solid green;
+  line-height: 55px;
+  font-size: 3.3em;
+  box-sizing: border-box;
+  
+}
+
+.pomoinner{
+   width: 294px;
+  height: 294px;
+  padding: 10px;
+  border-radius: 50%;
+  border: 4px solid rgb(51,51,51);
+  box-sizing: border-box;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+#fill {
+  bottom: 0px;
+  left: 0px;
+  position: absolute;
+  width: 300px;
+  background-color: rgb(255, 68, 68);
+  z-index: -1;
+}
+
+#control-panel button {
+  vertical-align: top;
+  line-height: 2.0em;
+  border: none;
+  padding: 0;
+  font-size: 1.6em;
+  cursor: pointer;
+  color: white;
+  outline: none;
+
+  background-color: rgb(51,51,51);
+
+}
+
+
+#reset {
+  margin-top: 50px;
+  font-size: 0.3em;
+}
+
+#reset button {
+  background-color: rgb(51,51,51);
+  color: white;
+  padding: 6px;
+}
+

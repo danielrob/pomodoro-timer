@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Daniel Robinson</title>
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+  <!-- /Styles  -->
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <!-- /Scripts  -->
+</head>
+
+<body>
+<h1>PomodoroTimer</h1>
+
+<div id="control-panel">
+  <table align="center">
+    <tr>
+      <td>BREAK LENGTH</td>
+      <td>SESSION LENGTH</td>
+    </tr>
+    <tr>
+      <td><button onclick="breakMinus()">-</button> <span id="break-length">3</span> <button onclick="breakPlus()">+</button></td>
+      <td><button onclick="sessionMinus()">-</button> <span id="session-length">7</span> <button onclick="sessionPlus()">+</button></td>
+    </tr>
+  </table>
+</div>
+<div id="pomodoro" onclick="toggleTimer()">
+  <div class="pomoinner">
+  <p id="title">Session</p>
+  <p id="timer">7</p>
+  <span id="fill"></span>
+</div>
+</div>
+<div id="reset">
+  <p><button onclick="reset()">RESET</button></p>
+</div>
+</body>
+</html>
