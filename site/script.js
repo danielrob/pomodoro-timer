@@ -9,6 +9,7 @@ var sessionLength = 1500;
 var clockTime = sessionLength;
 var timerPaused = true;
 var onBreak = false;
+var CLOCK_PIXEL_HEIGHT = 286;
 
 // Setters / Getters
 function setBreakLength(newLength){
@@ -146,7 +147,9 @@ var fillHeight = (function(){
       fillSessionLength = sessionLength;
       prevOnBreak = onBreak;
     }
-    return 286 - ((getClockTime() / (onBreak ? fillBreakLength : fillSessionLength)) * 286) + 'px';
+    var period = onBreak ? fillBreakLength : fillSessionLength;
+    var left = getClockTime();
+    return (period - left) / period * CLOCK_PIXEL_HEIGHT + 'px';
   };
 
 })();
