@@ -135,5 +135,7 @@ function fillHeight(){
   return 286 - ((getClockTime() / (onBreak ? breakLength : sessionLength)) * 286) + 'px';
 }
 
-// init view;
-notify();
+// init view
+document.addEventListener("DOMContentLoaded", function() {
+  notify();
+}, false);
