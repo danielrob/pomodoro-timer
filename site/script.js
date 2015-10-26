@@ -1,3 +1,8 @@
+(function(){
+
+"use strict";
+
+
 // Initialisation
 var breakLength = 300;
 var sessionLength = 1500;
@@ -28,27 +33,28 @@ function getClockTime(){
 // Timer
 var intervalTimer;
 
-function toggleTimer(){
+window.toggleTimer = function(){
   timerPaused = !timerPaused;
-  !timerPaused ? startTimer() : stopTimer();
-}
+  if(!timerPaused) startTimer();
+  else stopTimer();
+};
 
 function startTimer(){
    notify();
-   intervalTimer = setInterval(tick, 10)
+   intervalTimer = setInterval(tick, 1000);
 }
 
 function stopTimer(){
   clearInterval(intervalTimer);
 }
 
-function tick(){    
+function tick(){
       if (getClockTime() <= 0) {
           stopTimer();
           toggleBreak();
           return;
-      }     
-      setClockTime(getClockTime() - 1)      
+      }
+      setClockTime(getClockTime() - 1);
 }
 
 function toggleBreak(){
@@ -61,12 +67,12 @@ function toggleBreak(){
   Controls
 */
 
-function breakMinus(){incrementBreakLength(-60);}
-function breakPlus(){incrementBreakLength(60);}
-function sessionMinus(){incrementSessionLength(-60);}
-function sessionPlus(){incrementSessionLength(60);}
+window.breakMinus = function(){incrementBreakLength(-60);};
+window.breakPlus = function(){incrementBreakLength(60);};
+window.sessionMinus = function(){incrementSessionLength(-60);};
+window.sessionPlus = function(){incrementSessionLength(60);};
 
-function reset(){
+window.reset = function(){
   stopTimer();
   timerPaused = true;
   onBreak = false;
@@ -78,7 +84,6 @@ function reset(){
 function incrementBreakLength(increment){
   setBreakLength(breakLength + increment);
   if (timerPaused && onBreak) {
-    clockSeconds = 0;
     setClockTime(breakLength);
   } 
 }
@@ -87,7 +92,6 @@ function incrementBreakLength(increment){
 function incrementSessionLength(increment){
     setSessionLength(sessionLength + increment);
     if (timerPaused && !onBreak) {
-      clockSeconds = 0;
       setClockTime(sessionLength);
     } 
 }
@@ -116,9 +120,9 @@ var notify = (function(){
     if (prevSessionLength !== sessionLength)       {
       document.getElementById('session-length').innerHTML = sessionLength / 60;
       prevSessionLength = sessionLength;
-    }   
-  }
-  
+    }
+  };
+
 })();
 /*
   Helpers
@@ -137,17 +141,19 @@ var fillHeight = (function(){
   var prevOnBreak = onBreak;
 
   return function(){
-    if (timerPaused || prevOnBreak != onBreak) {
+    if (timerPaused || prevOnBreak !== onBreak) {
       fillBreakLength = breakLength;
       fillSessionLength = sessionLength;
       prevOnBreak = onBreak;
     }
-    return 286 - ((getClockTime() / (onBreak ? fillBreakLength : fillSessionLength)) * 286) + 'px';  
-  }
-  
+    return 286 - ((getClockTime() / (onBreak ? fillBreakLength : fillSessionLength)) * 286) + 'px';
+  };
+
 })();
 
 // init view
 document.addEventListener("DOMContentLoaded", function() {
   notify();
 }, false);
+
+})();
