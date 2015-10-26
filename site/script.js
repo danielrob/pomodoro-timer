@@ -80,20 +80,20 @@ window.reset = function(){
 };
 
 
-// Increment break length. If on break, and timer paused, reset clock to new length. 
+// Increment break length. If on break, and timer paused, reset clock to new length.
 function incrementBreakLength(increment){
   setBreakLength(breakLength + increment);
   if (timerPaused && onBreak) {
     setClockTime(breakLength);
-  } 
+  }
 }
 
-// Increment session length. If in session, and timer paused, reset clock to new length. 
+// Increment session length. If in session, and timer paused, reset clock to new length.
 function incrementSessionLength(increment){
     setSessionLength(sessionLength + increment);
     if (timerPaused && !onBreak) {
       setClockTime(sessionLength);
-    } 
+    }
 }
 
 /*
@@ -102,20 +102,20 @@ function incrementSessionLength(increment){
 var notify = (function(){
   var prevBreakLength;
   var prevSessionLength;
-  
+
   return function(){
     // Just always update clock.
     document.getElementById('timer').innerHTML = formatClockDisplay();
-    document.getElementById('title').innerHTML = onBreak ? 'Break' : 'Session';    
+    document.getElementById('title').innerHTML = onBreak ? 'Break' : 'Session';
     document.getElementById('fill').style.backgroundColor = onBreak ? 'red' : 'green';
     document.getElementById('fill').style.height = fillHeight();
-    
+
     // Update Break Length
     if (prevBreakLength !== breakLength) {
-      document.getElementById('break-length').innerHTML = breakLength / 60;      
+      document.getElementById('break-length').innerHTML = breakLength / 60;
        prevBreakLength = breakLength;
     }
-    
+
     // Update Session Length
     if (prevSessionLength !== sessionLength)       {
       document.getElementById('session-length').innerHTML = sessionLength / 60;
@@ -132,7 +132,7 @@ function formatClockDisplay(){
   var mins = Math.floor(time / 60);
   var secs = clockTime % 60;
   secs = secs < 10 ? '0' + secs : secs;
-  return (timerPaused && time === sessionLength) ? mins : mins + ':' + secs; 
+  return (timerPaused && time === sessionLength) ? mins : mins + ':' + secs;
 }
 
 var fillHeight = (function(){
