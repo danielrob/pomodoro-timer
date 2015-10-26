@@ -35,7 +35,7 @@ function toggleTimer(){
 
 function startTimer(){
    notify();
-   intervalTimer = setInterval(tick, 1000)
+   intervalTimer = setInterval(tick, 10)
 }
 
 function stopTimer(){
@@ -131,9 +131,21 @@ function formatClockDisplay(){
   return (timerPaused && time === sessionLength) ? mins : mins + ':' + secs; 
 }
 
-function fillHeight(){
-  return 286 - ((getClockTime() / (onBreak ? breakLength : sessionLength)) * 286) + 'px';
-}
+var fillHeight = (function(){
+  var fillBreakLength = breakLength;
+  var fillSessionLength = sessionLength;
+  var prevOnBreak = onBreak;
+
+  return function(){
+    if (timerPaused || prevOnBreak != onBreak) {
+      fillBreakLength = breakLength;
+      fillSessionLength = sessionLength;
+      prevOnBreak = onBreak;
+    }
+    return 286 - ((getClockTime() / (onBreak ? fillBreakLength : fillSessionLength)) * 286) + 'px';  
+  }
+  
+})();
 
 // init view
 document.addEventListener("DOMContentLoaded", function() {
